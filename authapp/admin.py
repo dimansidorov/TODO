@@ -1,5 +1,5 @@
 from django.contrib import admin
 
-from authapp.models import UserModel
+from authapp.models import User
 
-admin.register(UserModel)
+admin.register(User)
