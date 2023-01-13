@@ -31,7 +31,7 @@ class App extends React.Component {
   
       <div>
         <Header />
-        <UserList users={this.state.users} key=""/>
+        <UserList users={this.state.users}/>
         <Footer/>
       </div>
     );
