@@ -4,14 +4,14 @@ from rest_framework.serializers import ModelSerializer
 
 
 class ProjectModelSerializer(ModelSerializer):
-    creators = UserModelSerializer(many=True)
+    # creators = UserModelSerializer(many=True)
     class Meta:
         model = Project
-        fields = '__all__'
+        fields = ('title', 'link', 'creators')
 
 
 class TodoModelSerializer(ModelSerializer):
-    creator = UserModelSerializer()
+
     class Meta:
         model = ToDo
-        fields = '__all__'
+        fields = ('project', 'text', 'updated_at', 'created_at', 'active', 'creator')

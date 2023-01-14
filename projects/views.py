@@ -8,6 +8,8 @@ class ProjectModelViewSet(ModelViewSet):
     serializer_class = ProjectModelSerializer
 
 
+
 class ToDoModelViewSet(ModelViewSet):
     queryset = ToDo.objects.all()
     serializer_class = TodoModelSerializer
+    filterset_fields = ('created_at', 'updated_at')
