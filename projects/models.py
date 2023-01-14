@@ -18,6 +18,3 @@ class ToDo(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     active = models.BooleanField(default=True)
-
-
-

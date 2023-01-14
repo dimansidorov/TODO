@@ -7,11 +7,12 @@ class ProjectModelSerializer(ModelSerializer):
     creators = UserModelSerializer(many=True)
     class Meta:
         model = Project
-        fields = '__all__'
+        fields = ('id', 'title', 'link', 'creators')
 
 
 class TodoModelSerializer(ModelSerializer):
     creator = UserModelSerializer()
+
     class Meta:
         model = ToDo
-        fields = '__all__'
+        fields = ('id', 'project', 'text', 'updated_at', 'created_at', 'active', 'creator')
