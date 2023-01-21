@@ -25,7 +25,7 @@ router = DefaultRouter()
 # router.register('users', UserModelViewSet)
 router.register('users', UserViewSet, )
 router.register('projects', ProjectModelViewSet)
-router.register('todo', ToDoModelViewSet)
+router.register('notes', ToDoModelViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
