@@ -1,10 +1,10 @@
 from .models import Project, ToDo
-from authapp.serializers import UserModelSerializer
+from authapp.serializers import UserModelSerializer, UserOnlyUsernameModelSerializer
 from rest_framework.serializers import ModelSerializer
 
 
 class ProjectModelSerializer(ModelSerializer):
-    creators = UserModelSerializer(many=True)
+    creators = UserOnlyUsernameModelSerializer(many=True)
     class Meta:
         model = Project
         fields = ('id', 'title', 'link', 'creators')
