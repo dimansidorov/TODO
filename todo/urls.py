@@ -19,17 +19,21 @@ from rest_framework.authtoken import views
 from rest_framework.routers import DefaultRouter
 from authapp.views import UserViewSet
 from projects.views import ProjectModelViewSet, ToDoModelViewSet
+from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView
 
 # from authapp.views import UserModelViewSet
 
 router = DefaultRouter()
 # router.register('users', UserModelViewSet)
-router.register('users', UserViewSet, )
+router.register('users', UserViewSet)
 router.register('projects', ProjectModelViewSet)
 router.register('notes', ToDoModelViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('api-token-auth/', views.obtain_auth_token)
+    path('api-token-auth/', views.obtain_auth_token),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
 ]
