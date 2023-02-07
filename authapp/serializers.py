@@ -13,3 +13,9 @@ class UserOnlyUsernameModelSerializer(ModelSerializer):
         model = User
         fields = 'username',
 
+
+class SuperUserModelSeriaziler(ModelSerializer):
+    class Meta:
+        model = User
+        fields = 'username', 'firstname', 'lastname', 'email', 'is_superuser', 'is_staff'
+
