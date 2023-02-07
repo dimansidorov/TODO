@@ -1,7 +1,5 @@
-from rest_framework import mixins, versioning
-from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer, AdminRenderer
-from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet, ViewSet, GenericViewSet
+from rest_framework import mixins
+from rest_framework.viewsets import GenericViewSet
 from .models import User
 from .serializers import UserModelSerializer, SuperUserModelSeriaziler
 
