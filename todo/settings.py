@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
+    'drf_yasg',
     # My
     'authapp.apps.AuthappConfig',
     'projects.apps.ProjectsConfig',
@@ -156,6 +157,9 @@ REST_FRAMEWORK = {
         'djangorestframework_camel_case.parser.CamelCaseJSONParser',
         # Any other parsers
     ),
+    'DEFAULT_VERSIONING_CLASS':
+        'rest_framework.versioning.AcceptHeaderVersioning'
+    ,
     'DEFAULT_FILTER_BACKENDS': (
         'django_filters.rest_framework.DjangoFilterBackend',
     ),
