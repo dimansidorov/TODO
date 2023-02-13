@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
     'drf_yasg',
+    'graphene_django',
     # My
     'authapp.apps.AuthappConfig',
     'projects.apps.ProjectsConfig',
@@ -197,4 +198,8 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+}
+
+GRAPHENE = {
+    'SCHEMA': 'todo.schema.schema' # Where your Graphene schema lives
 }
