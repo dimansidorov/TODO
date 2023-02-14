@@ -41,6 +41,7 @@ class App extends React.Component {
                 }, this.getData);
             });
     }
+
     setToken(token) {
         const cookies = new Cookies();
         cookies.set('token', token)
@@ -62,7 +63,6 @@ class App extends React.Component {
         const token = cookies.get('token')
         this.setState({'token': token}, () => this.loadData())
     }
-
 
     getToken(username, password) {
         axios.post('http://127.0.0.1:8000/api-token-auth/', {
@@ -122,14 +122,39 @@ class App extends React.Component {
 
     }
 
-    componentDidMount() {
-        this.getTokenFromBack();
+    deleteNote(id) {
+        const headers = this.getHeaders()
+        axios.delete(`http://127.0.0.1:8000/api/notes/${id}`, {headers})
+            .then(response => {
+                this.setState({
+                    notes: this.state.notes.filter((note) => note.id !==
+                        id)
+                })
+            }).catch(error => console.log(error))
     }
 
-    render() {
-        return (
-            <div className='container'>
-                <BrowserRouter>
+    deleteProject(id) {
+        const headers = this.getHeaders()
+        axios.delete(`http://127.0.0.1:8000/api/projects/${id}`, {headers})
+            .then(response => {
+                this.setState({
+                    projects: this.state.projects.filter((project) => project.id !==
+                        id)
+                })
+            }).catch(error => console.log(error))
+    }
+
+componentDidMount()
+{
+    this.getTokenFromBack();
+}
+
+render()
+{
+    return (
+        <div className='container'>
+            <BrowserRouter>
+                <div className="container">
                     <nav className="container">
                         <ul className="nav nav-pills">
                             <li className="nav-item nav-link">
@@ -151,22 +176,35 @@ class App extends React.Component {
                             </li>
                         </ul>
                     </nav>
-                    <Routes>
-                        <Route path='/' element={<ProjectList projects={this.state.projects}/>}/>
-                        <Route path='/notes' element={<NoteList notes={this.state.notes}/>}/>
-                        <Route path='/users' element={<UserList users={this.state.users}/>}/>
-                        <Route path='/login' element={<LoginForm
-                            getToken={(username, password) => this.getToken(username, password)}/>}/>
-                        <Route path='/projects' element={<Navigate to='/'/>}/>
-                        <Route path='*' element={<NotFound404/>}/>
-                    </Routes>
+                    {/*<div>*/}
+                    {/*    {*/}
+                    {/*        this.isAuthenticated()*/}
+                    {/*            ? <button className="btn btn-outline-primary me-2"*/}
+                    {/*                      onClick={() => this.logout()}>Выйти</button>*/}
+                    {/*            : <Link to='/login'>Авторизоваться</Link>*/}
+                    {/*    }*/}
 
-                    <Footer/>
+                    {/*</div>*/}
+                </div>
 
-                </BrowserRouter>
-            </div>
-        );
-    }
+                <Routes>
+                    <Route path='/' element={<ProjectList projects={this.state.projects}
+                                                          deleteProject={(id) => this.deleteProject(id)}/>}/>
+                    <Route path='/notes' element={<NoteList notes={this.state.notes}
+                                                            deleteNote={(id) => this.deleteNote(id)}/>}/>
+                    <Route path='/users' element={<UserList users={this.state.users}/>}/>
+                    <Route path='/login' element={<LoginForm
+                        getToken={(username, password) => this.getToken(username, password)}/>}/>
+                    <Route path='/projects' element={<Navigate to='/'/>}/>
+                    <Route path='*' element={<NotFound404/>}/>
+                </Routes>
+
+                <Footer/>
+
+            </BrowserRouter>
+        </div>
+    );
+}
 
 }
 
