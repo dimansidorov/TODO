@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 const NoteItem = ({note, deleteNote}) => {
     if (note.active) {
@@ -17,7 +18,7 @@ const NoteItem = ({note, deleteNote}) => {
                     {note.updated_at}
                 </td>
                 <td>
-                    {note.creator.username}
+                    {note.creator.id}
                 </td>
                 <td>
                     <button type='button' className="btn btn-outline-primary"
@@ -32,30 +33,34 @@ const NoteItem = ({note, deleteNote}) => {
 
 const NoteList = ({notes, deleteNote}) => {
     return (
-        <table className="container">
-            <thead>
-            <tr>
-                <th>
-                    Проект
-                </th>
-                <th>
-                    Текст
-                </th>
-                <th>
-                    Создана
-                </th>
-                <th>
-                    Отредактирована
-                </th>
-                <th>
-                    Автор
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            {notes.map((note) => <NoteItem key={note.id.toString()} note={note} deleteNote={deleteNote}/>)}
-            </tbody>
-        </table>
+        <div>
+
+            <table className="container">
+                <thead>
+                <tr>
+                    <th>
+                        Проект
+                    </th>
+                    <th>
+                        Текст
+                    </th>
+                    <th>
+                        Создана
+                    </th>
+                    <th>
+                        Отредактирована
+                    </th>
+                    <th>
+                        Автор
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                {notes.map((note) => <NoteItem key={note.id.toString()} note={note} deleteNote={deleteNote}/>)}
+                </tbody>
+            </table>
+            <Link to='/notes/create'>Создать заметку</Link>
+        </div>
     );
 }
 

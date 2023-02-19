@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom";
 
 const ProjectItem = ({project, deleteProject}) => {
     return (
@@ -24,7 +25,8 @@ const ProjectItem = ({project, deleteProject}) => {
 
 const ProjectList = ({projects, deleteProject}) => {
     return (
-        <table className="container">
+        <div>
+            <table className="container">
             <thead>
             <tr>
                 <th>
@@ -43,6 +45,8 @@ const ProjectList = ({projects, deleteProject}) => {
             deleteProject={deleteProject}/>)}
             </tbody>
         </table>
+        <Link to='/createproject'>Создать проект</Link>
+        </div>
 
     );
 }
