@@ -1,3 +1,5 @@
+from rest_framework import serializers
+
 from .models import Project, ToDo
 from authapp.serializers import UserModelSerializer, UserOnlyUsernameModelSerializer
 from rest_framework.serializers import ModelSerializer
@@ -11,8 +13,8 @@ class ProjectModelSerializer(ModelSerializer):
 
 
 class TodoModelSerializer(ModelSerializer):
-    creator = UserModelSerializer()
-
+    # creator = serializers.HiddenField(default=serializers.CurrentUserDefault())
+    # active = serializers.HiddenField(default=True)
     class Meta:
         model = ToDo
         fields = ('id', 'project', 'text', 'updated_at', 'created_at', 'active', 'creator')
