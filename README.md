@@ -6,7 +6,7 @@ My pet-project is a todo app built with Django and Django REST framework, with a
 
 - Python 3.10
 - Django 4.1.5
-- DRF
+- DRF 3.14.0
 - React
 - Docker-compose
 
