@@ -9,6 +9,7 @@ My pet-project is a todo app built with Django and Django REST framework, with a
 - DRF 3.14.0
 - React
 - Docker-compose
+- PostgreSQL
 
 ## Лицензия
 
